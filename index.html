@@ -39,7 +39,7 @@
             <span class="font-bold text-lg">المجموع: <span id="total-price" class="text-orange-600 text-2xl">0</span> ريال</span>
         </div>
         <button id="send-btn" onclick="sendOrder()" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition">
-            إتمام الطلب والدفع عند الاستلام
+            إتمام الطلب عبر الواتساب
         </button>
     </div>
 
@@ -47,14 +47,14 @@
         let cart = [];
         let total = 0;
 
-        // وظيفة إضافة المنتجات للسلة
+        // إضافة منتج للسلة
         function addToCart(name, price) {
             cart.push({name, price});
             total += price;
             document.getElementById('total-price').innerText = total;
         }
 
-        // وظيفة إرسال الطلب عبر الواتساب
+        // إرسال الطلب
         function sendOrder() {
             if (cart.length === 0) {
                 return alert("السلة فارغة! فضلاً اختر بعض الأصناف أولاً.");
@@ -71,10 +71,13 @@
             btn.disabled = true;
             btn.innerText = "جاري تحويلك للواتساب...";
 
-            // تجميع ملخص الطلبات
+            // 1. تجميع المنتجات في نص واحد
             let orderSummary = cart.map(item => `- ${item.name} (${item.price} ريال)`).join('%0A');
 
-            // تجهيز نص الرسالة بتنسيق متوافق مع روابط الواتساب
+            // 2. تحديد رقم الواتساب بالصيغة الدولية (بدون صفر في البداية)
+            let phoneNumber = "966502743396"; 
+
+            // 3. تجهيز نص الرسالة
             let message = `*طلب جديد من مطعم مراسيم العرب*%0A%0A` +
                           `*اسم العميل:* ${customerName}%0A` +
                           `*الجوال:* ${customerPhone}%0A%0A` +
@@ -82,19 +85,17 @@
                           `*المجموع الكلي:* ${total} ريال%0A%0A` +
                           `*طريقة الدفع:* عند الاستلام`;
 
-            let phoneNumber = "966502743396";
-
-            // فتح الواتساب في نافذة جديدة
+            // 4. فتح رابط الواتساب
             window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 
-            // تصفير السلة بعد الإرسال
+            // إعادة تعيين السلة بعد الإرسال
             setTimeout(() => {
-                alert("✅ تم تجهيز طلبك بنجاح!");
+                alert("✅ تم تحويلك للواتساب لتأكيد الطلب.");
                 cart = [];
                 total = 0;
                 document.getElementById('total-price').innerText = "0";
                 btn.disabled = false;
-                btn.innerText = "إتمام الطلب والدفع عند الاستلام";
+                btn.innerText = "إتمام الطلب عبر الواتساب";
             }, 1000);
         }
     </script>
