@@ -74,6 +74,7 @@
             document.getElementById('successModal').style.display = 'none';
             cart = []; total = 0;
             document.getElementById('total-price').innerText = "0";
+            location.reload(); // تحديث الصفحة لتصفير السلة
         }
 
         async function sendOrder() {
@@ -107,9 +108,10 @@
                 // استخدام الرابط الخاص بكِ مباشرة للإكسل
                 const scriptURL = "https://script.google.com/macros/s/AKfycbymULi-4BsKGlxWRRB13qYNItAPbWIU6Xy7lM3A56YvxaUhuNo17ZsLjg-MF99CeuY/exec";
                 
+                // إرسال البيانات
                 await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'no-cors', // لضمان الإرسال دون مشاكل تقنية
+                    mode: 'no-cors',
                     cache: 'no-cache',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -123,11 +125,11 @@
                 });
 
                 // إظهار رسالة النجاح
-                document.getElementById('modalMsg').innerText = "يا " + customerName + "، تم تسجيل طلبك في الإكسل وبنتواصل معك.";
+                document.getElementById('modalMsg').innerText = "يا " + customerName + "، تم تسجيل طلبك وبنتواصل معك فوراً.";
                 document.getElementById('successModal').style.display = 'block';
 
             } catch (err) {
-                alert("حدث خطأ في الإرسال");
+                alert("حدث خطأ بسيط في الإرسال، جربي مرة ثانية.");
             } finally {
                 btn.disabled = false;
                 btn.innerText = "إتمام الطلب (توصيل للموقع)";
