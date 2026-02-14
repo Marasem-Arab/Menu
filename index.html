@@ -14,20 +14,22 @@
         .close-x { position: absolute; top: 10px; left: 15px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; line-height: 1; }
         .category-title { border-right: 4px solid #ea580c; padding-right: 10px; margin: 20px 0 10px 0; font-weight: bold; color: #374151; }
         
-        /* توحيد حجم الأزرار */
+        /* تعديل حجم الأزرار لتكون أصغر وأرشق */
         .btn-fixed {
-            width: 100px; /* عرض ثابت */
-            height: 45px; /* ارتفاع ثابت */
+            min-width: 75px; /* عرض أصغر */
+            padding: 6px 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 0.85rem;
-            line-height: 1.2;
+            font-size: 0.8rem;
+            line-height: 1.1;
+            transition: 0.2s;
         }
         .btn-fixed span {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: normal;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -55,16 +57,16 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">تيس كامل مندي</h3><p class="text-orange-600">1380 ريال</p></div>
+                    <div><h3 class="font-bold">تيس كامل مندي</h3><p class="text-orange-600 text-sm">1380 ريال</p></div>
                 </div>
-                <button onclick="addToCart('تيس كامل مندي', 1380)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>1380 ريال</span></button>
+                <button onclick="addToCart('تيس كامل مندي', 1380)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">نص تيس مندي</h3><p class="text-orange-600">690 ريال</p></div>
+                    <div><h3 class="font-bold">نص تيس مندي</h3><p class="text-orange-600 text-sm">690 ريال</p></div>
                 </div>
-                <button onclick="addToCart('نص تيس مندي', 690)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>690 ريال</span></button>
+                <button onclick="addToCart('نص تيس مندي', 690)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">إضافة +</button>
             </div>
         </div>
 
@@ -73,7 +75,7 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">دجاج مندي</h3><p class="text-orange-600">21/42 ريال</p></div>
+                    <div><h3 class="font-bold">دجاج مندي</h3></div>
                 </div>
                 <div class="flex gap-1">
                     <button onclick="addToCart('حبة دجاج مندي', 42)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">كاملة <span>42 ريال</span></button>
@@ -83,7 +85,7 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">دجاج مضغوط</h3><p class="text-orange-600">21/42 ريال</p></div>
+                    <div><h3 class="font-bold">دجاج مضغوط</h3></div>
                 </div>
                 <div class="flex gap-1">
                     <button onclick="addToCart('حبة دجاج مضغوط', 42)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">كاملة <span>42 ريال</span></button>
@@ -93,7 +95,7 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">دجاج مقلوبة</h3><p class="text-orange-600">23/45 ريال</p></div>
+                    <div><h3 class="font-bold">دجاج مقلوبة</h3></div>
                 </div>
                 <div class="flex gap-1">
                     <button onclick="addToCart('حبة دجاج مقلوبة', 45)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">كاملة <span>45 ريال</span></button>
@@ -103,7 +105,7 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">دجاج شواية</h3><p class="text-orange-600">21/42 ريال</p></div>
+                    <div><h3 class="font-bold">دجاج شواية</h3></div>
                 </div>
                 <div class="flex gap-1">
                     <button onclick="addToCart('حبة دجاج شواية', 42)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">كاملة <span>42 ريال</span></button>
@@ -117,47 +119,33 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600">85 ريال</p></div>
+                    <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600 text-sm">85 ريال</p></div>
                 </div>
-                <button onclick="addToCart('نفر لحم مندي', 85)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>85 ريال</span></button>
+                <button onclick="addToCart('نفر لحم مندي', 85)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400">صورة</div>
-                    <div><h3 class="font-bold">نفر لحم حاشي</h3><p class="text-orange-600">50 ريال</p></div>
+                    <div><h3 class="font-bold">نفر لحم حاشي</h3><p class="text-orange-600 text-sm">50 ريال</p></div>
                 </div>
-                <button onclick="addToCart('نفر لحم حاشي', 50)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>50 ريال</span></button>
+                <button onclick="addToCart('نفر لحم حاشي', 50)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">إضافة +</button>
             </div>
         </div>
 
         <h2 class="category-title">الإدامات</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">مشكل فرن</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div><h3 class="font-bold">مشكل فرن</h3></div>
                 <div class="flex gap-1">
-                    <button onclick="addToCart('مشكل فرن كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg">كبير <span>10 ريال</span></button>
-                    <button onclick="addToCart('مشكل فرن صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg">صغير <span>5 ريال</span></button>
+                    <button onclick="addToCart('مشكل فرن كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">كبير <span>10 ريال</span></button>
+                    <button onclick="addToCart('مشكل فرن صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">صغير <span>5 ريال</span></button>
                 </div>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">مشكل خضار</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div><h3 class="font-bold">مشكل خضار</h3></div>
                 <div class="flex gap-1">
-                    <button onclick="addToCart('مشكل خضار كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg">كبير <span>10 ريال</span></button>
-                    <button onclick="addToCart('مشكل خضار صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg">صغير <span>5 ريال</span></button>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">بامية</h3><p class="text-orange-600">5 / 10 ريال</p></div>
-                <div class="flex gap-1">
-                    <button onclick="addToCart('بامية كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg">كبير <span>10 ريال</span></button>
-                    <button onclick="addToCart('بامية صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg">صغير <span>5 ريال</span></button>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">ملوخية</h3><p class="text-orange-600">5 / 10 ريال</p></div>
-                <div class="flex gap-1">
-                    <button onclick="addToCart('ملوخية كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg">كبير <span>10 ريال</span></button>
-                    <button onclick="addToCart('ملوخية صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg">صغير <span>5 ريال</span></button>
+                    <button onclick="addToCart('مشكل خضار كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">كبير <span>10 ريال</span></button>
+                    <button onclick="addToCart('مشكل خضار صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">صغير <span>5 ريال</span></button>
                 </div>
             </div>
         </div>
@@ -165,41 +153,22 @@
         <h2 class="category-title">المقبلات والسلطات</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">تبولة</h3><p class="text-orange-600">5 ريال</p></div>
-                <button onclick="addToCart('تبولة', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>5 ريال</span></button>
+                <div><h3 class="font-bold">تبولة</h3><p class="text-orange-600 text-sm">5 ريال</p></div>
+                <button onclick="addToCart('تبولة', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">سلطة خيار بالزبادي</h3><p class="text-orange-600">5 ريال</p></div>
-                <button onclick="addToCart('سلطة خيار بالزبادي', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>5 ريال</span></button>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">سلطة ذرة</h3><p class="text-orange-600">5 ريال</p></div>
-                <button onclick="addToCart('سلطة ذرة', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>5 ريال</span></button>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">سلطة زيتون</h3><p class="text-orange-600">5 ريال</p></div>
-                <button onclick="addToCart('سلطة زيتون', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>5 ريال</span></button>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">حمص</h3><p class="text-orange-600">5 ريال</p></div>
-                <button onclick="addToCart('حمص', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>5 ريال</span></button>
+                <div><h3 class="font-bold">حمص</h3><p class="text-orange-600 text-sm">5 ريال</p></div>
+                <button onclick="addToCart('حمص', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">إضافة +</button>
             </div>
         </div>
 
         <h2 class="category-title">الشعبيات</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">جريش</h3><p class="text-orange-600">5 / 10 ريال</p></div>
+                <div><h3 class="font-bold">جريش</h3></div>
                 <div class="flex gap-1">
-                    <button onclick="addToCart('جريش كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg">كبير <span>10 ريال</span></button>
-                    <button onclick="addToCart('جريش صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg">صغير <span>5 ريال</span></button>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">قرصان</h3><p class="text-orange-600">5 / 10 ريال</p></div>
-                <div class="flex gap-1">
-                    <button onclick="addToCart('قرصان كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg">كبير <span>10 ريال</span></button>
-                    <button onclick="addToCart('قرصان صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg">صغير <span>5 ريال</span></button>
+                    <button onclick="addToCart('جريش كبير', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">كبير <span>10 ريال</span></button>
+                    <button onclick="addToCart('جريش صغير', 5)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">صغير <span>5 ريال</span></button>
                 </div>
             </div>
         </div>
@@ -207,12 +176,8 @@
         <h2 class="category-title">الحلا</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600">10 ريال</p></div>
-                <button onclick="addToCart('أم علي', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>10 ريال</span></button>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div><h3 class="font-bold">كنافة</h3><p class="text-orange-600">8 ريال</p></div>
-                <button onclick="addToCart('كنافة', 8)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold transition">إضافة <span>8 ريال</span></button>
+                <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600 text-sm">10 ريال</p></div>
+                <button onclick="addToCart('أم علي', 10)" class="btn-fixed bg-orange-600 text-white rounded-lg font-bold">إضافة +</button>
             </div>
         </div>
 
