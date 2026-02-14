@@ -13,50 +13,39 @@
         .modal-content { background-color: white; margin: 20% auto; padding: 30px; border-radius: 20px; width: 85%; max-width: 400px; text-align: center; position: relative; animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .close-x { position: absolute; top: 10px; left: 15px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; line-height: 1; }
-        .category-title { border-right: 4px solid #ea580c; padding-right: 10px; margin: 20px 0 10px 0; font-weight: bold; color: #374151; }
+        .category-title { border-right: 4px solid #ea580c; padding-right: 10px; margin: 25px 0 15px 0; font-weight: bold; color: #374151; }
         
-        /* زر الإضافة الصغير */
         .btn-fixed {
-            min-width: 70px; 
-            padding: 5px 8px;
+            min-width: 75px; 
+            padding: 6px 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
-            border-radius: 8px;
+            font-size: 0.8rem;
+            border-radius: 10px;
+            transition: 0.2s;
         }
-        .btn-fixed span { font-size: 0.6rem; display: block; }
+        .btn-fixed span { font-size: 0.65rem; font-weight: normal; opacity: 0.9; }
 
-        /* الشعار العلوي */
         .logo-container {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 2px solid #fff;
+            width: 55px; height: 55px;
+            background: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; border: 2px solid #fff;
         }
         .logo-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* شريط التواصل */
         .social-bar {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-top: 1px solid #eee;
-            margin-top: 20px;
+            display: flex; justify-content: center; gap: 25px;
+            padding: 20px; background: #fff;
+            border-radius: 20px; border: 1px solid #eee; margin: 20px 0;
         }
-        .social-icon { font-size: 24px; transition: 0.3s; }
-        .fa-tiktok { color: #000; }
-        .fa-snapchat { color: #FFFC00; text-shadow: 1px 1px 2px #000; }
-        .fa-instagram { color: #E4405F; }
+        .social-icon { font-size: 28px; }
         .fa-whatsapp { color: #25D366; }
+        .fa-snapchat { color: #FFFC00; text-shadow: 1px 1px 1px #000; }
+        .fa-tiktok { color: #000; }
+        .fa-instagram { color: #E4405F; }
     </style>
 </head>
 <body class="bg-gray-50 pb-52">
@@ -72,66 +61,157 @@
     </div>
 
     <header class="bg-orange-600 text-white p-4 shadow-lg sticky top-0 z-50 flex items-center gap-3">
-        <div class="logo-container">
-            <img src="https://i.ibb.co/3ykZ8Kk/logo.png" alt="Logo">
+        <div class="logo-container shadow-md">
+            <img src="https://via.placeholder.com/100" alt="Logo">
         </div>
         <div>
-            <h1 class="text-lg font-bold">مطعم مراسيم العرب</h1>
-            <p class="text-[10px] opacity-90 text-white/80">أصالة المذاق في البدائع</p>
+            <h1 class="text-xl font-bold">مطعم مراسيم العرب</h1>
+            <p class="text-xs opacity-90">أصالة المذاق في البدائع | الدفع عند الاستلام</p>
         </div>
     </header>
 
     <main class="p-4 max-w-md mx-auto">
         
-        <h2 class="category-title">الذبائح</h2>
-        <div class="grid gap-3">
-            <div class="bg-white p-3 rounded-xl shadow-sm flex justify-between items-center">
-                <div><h3 class="font-bold text-sm">تيس كامل مندي</h3><p class="text-orange-600 text-xs font-bold">1380 ريال</p></div>
+        <h2 class="category-title">الذبائح (حسب الطلب)</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-[10px] text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">تيس كامل مندي</h3><p class="text-orange-600 text-sm">1380 ريال</p></div>
+                </div>
                 <button onclick="addToCart('تيس كامل مندي', 1380)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
-            <div class="bg-white p-3 rounded-xl shadow-sm flex justify-between items-center">
-                <div><h3 class="font-bold text-sm">نص تيس مندي</h3><p class="text-orange-600 text-xs font-bold">690 ريال</p></div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-[10px] text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">نص تيس مندي</h3><p class="text-orange-600 text-sm">690 ريال</p></div>
+                </div>
                 <button onclick="addToCart('نص تيس مندي', 690)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
         </div>
 
-        <h2 class="category-title">الدجاج</h2>
-        <div class="grid gap-3">
-            <div class="bg-white p-3 rounded-xl shadow-sm flex justify-between items-center">
-                <h3 class="font-bold text-sm">دجاج مندي</h3>
+        <h2 class="category-title">الدجاج مع الأرز</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <h3 class="font-bold">دجاج مندي</h3>
                 <div class="flex gap-1">
                     <button onclick="addToCart('حبة دجاج مندي', 42)" class="btn-fixed bg-orange-600 text-white font-bold">كاملة <span>42 ريال</span></button>
                     <button onclick="addToCart('نص دجاج مندي', 21)" class="btn-fixed bg-orange-600 text-white font-bold">نص <span>21 ريال</span></button>
                 </div>
             </div>
-            <div class="bg-white p-3 rounded-xl shadow-sm flex justify-between items-center">
-                <h3 class="font-bold text-sm">دجاج مضغوط</h3>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <h3 class="font-bold">دجاج مضغوط</h3>
                 <div class="flex gap-1">
                     <button onclick="addToCart('حبة دجاج مضغوط', 42)" class="btn-fixed bg-orange-600 text-white font-bold">كاملة <span>42 ريال</span></button>
                     <button onclick="addToCart('نص دجاج مضغوط', 21)" class="btn-fixed bg-orange-600 text-white font-bold">نص <span>21 ريال</span></button>
                 </div>
             </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <h3 class="font-bold">دجاج مقلوبة</h3>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('حبة دجاج مقلوبة', 45)" class="btn-fixed bg-orange-600 text-white font-bold">كاملة <span>45 ريال</span></button>
+                    <button onclick="addToCart('نص دجاج مقلوبة', 23)" class="btn-fixed bg-orange-600 text-white font-bold">نص <span>23 ريال</span></button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <h3 class="font-bold">دجاج شواية</h3>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('حبة دجاج شواية', 42)" class="btn-fixed bg-orange-600 text-white font-bold">كاملة <span>42 ريال</span></button>
+                    <button onclick="addToCart('نص دجاج شواية', 21)" class="btn-fixed bg-orange-600 text-white font-bold">نص <span>21 ريال</span></button>
+                </div>
+            </div>
         </div>
 
-        <div class="text-center mt-10">
-            <p class="text-gray-500 text-sm font-bold mb-2">تواصلوا معنا عبر:</p>
-            <div class="social-bar rounded-2xl shadow-inner">
+        <h2 class="category-title">اللحم مع الأرز</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-[10px] text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600 text-sm">85 ريال</p></div>
+                </div>
+                <button onclick="addToCart('نفر لحم مندي', 85)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-[10px] text-gray-400">صورة</div>
+                    <div><h3 class="font-bold">نفر لحم حاشي</h3><p class="text-orange-600 text-sm">50 ريال</p></div>
+                </div>
+                <button onclick="addToCart('نفر لحم حاشي', 50)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+        </div>
+
+        <h2 class="category-title">الإدامات</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <h3 class="font-bold">مشكل فرن</h3>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('مشكل فرن كبير', 10)" class="btn-fixed bg-orange-600 text-white font-bold">كبير <span>10 ريال</span></button>
+                    <button onclick="addToCart('مشكل فرن صغير', 5)" class="btn-fixed bg-orange-600 text-white font-bold">صغير <span>5 ريال</span></button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <h3 class="font-bold">بامية / ملوخية / خضار</h3>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('إدام كبير', 10)" class="btn-fixed bg-orange-600 text-white font-bold">كبير <span>10 ريال</span></button>
+                    <button onclick="addToCart('إدام صغير', 5)" class="btn-fixed bg-orange-600 text-white font-bold">صغير <span>5 ريال</span></button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="category-title">المقبلات والسلطات</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div><h3 class="font-bold">تبولة / حمص / خيار زبادي</h3><p class="text-orange-600 text-sm">5 ريال</p></div>
+                <button onclick="addToCart('مقبلات', 5)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div><h3 class="font-bold">سلطة ذرة / زيتون</h3><p class="text-orange-600 text-sm">5 ريال</p></div>
+                <button onclick="addToCart('سلطة', 5)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+        </div>
+
+        <h2 class="category-title">الشعبيات</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <h3 class="font-bold">جريش / قرصان</h3>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('شعبي كبير', 10)" class="btn-fixed bg-orange-600 text-white font-bold">كبير <span>10 ريال</span></button>
+                    <button onclick="addToCart('شعبي صغير', 5)" class="btn-fixed bg-orange-600 text-white font-bold">صغير <span>5 ريال</span></button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="category-title">الحلا</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600 text-sm">10 ريال</p></div>
+                <button onclick="addToCart('أم علي', 10)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div><h3 class="font-bold">كنافة</h3><p class="text-orange-600 text-sm">8 ريال</p></div>
+                <button onclick="addToCart('كنافة', 8)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+        </div>
+
+        <div class="text-center mt-12 mb-8">
+            <p class="text-gray-500 font-bold mb-4">تواصلوا معنا مباشرة</p>
+            <div class="social-bar shadow-sm">
                 <a href="https://wa.me/966XXXXXXXXX" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://snapchat.com/add/YourUser" class="social-icon"><i class="fab fa-snapchat"></i></a>
-                <a href="https://tiktok.com/@YourUser" class="social-icon"><i class="fab fa-tiktok"></i></a>
-                <a href="https://instagram.com/YourUser" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-snapchat"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
 
     </main>
 
-    <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-2xl max-w-md mx-auto rounded-t-2xl border-t z-50">
+    <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-2xl max-w-md mx-auto rounded-t-3xl border-t z-50">
         <div class="flex justify-between items-center mb-4">
             <span class="font-bold text-gray-700">المجموع:</span>
-            <span class="text-orange-600 text-xl font-bold"><span id="total-price">0</span> ريال</span>
+            <span class="text-orange-600 text-2xl font-bold"><span id="total-price">0</span> ريال</span>
         </div>
-        <button id="send-btn" onclick="sendOrder()" class="w-full bg-green-600 text-white py-3 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition">
-            إتمام الطلب (توصيل للموقع)
+        <button id="send-btn" onclick="sendOrder()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg active:scale-95 transition">
+            إرسال الطلب عبر واتساب
         </button>
     </div>
 
@@ -158,7 +238,7 @@
             if(!customerName) return;
             let customerPhone = prompt("رقم الجوال:");
             if(!customerPhone) return;
-            let address = prompt("وصف العنوان:");
+            let address = prompt("وصف العنوان (أو اكتب استلام من الفرع):");
 
             const btn = document.getElementById('send-btn');
             btn.disabled = true;
@@ -166,7 +246,7 @@
 
             let summary = {};
             cart.forEach(item => { summary[item.name] = (summary[item.name] || 0) + 1; });
-            let orderText = Object.keys(summary).map(key => `${key} (${summary[key]})`).join(" + ");
+            let orderText = Object.keys(summary).map(key => `${key} [${summary[key]}]`).join(" + ");
 
             try {
                 const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
@@ -181,13 +261,13 @@
                         "المجموع": total + " ريال"
                     })
                 });
-                document.getElementById('modalMsg').innerText = "تم تسجيل طلبك بنجاح.";
+                document.getElementById('modalMsg').innerText = "تم استلام طلبك يا " + customerName;
                 document.getElementById('successModal').style.display = 'block';
             } catch (err) {
-                alert("خطأ في الإرسال");
+                alert("حدث خطأ، يرجى المحاولة لاحقاً");
             } finally {
                 btn.disabled = false;
-                btn.innerText = "إتمام الطلب (توصيل للموقع)";
+                btn.innerText = "إرسال الطلب عبر واتساب";
             }
         }
     </script>
