@@ -16,7 +16,7 @@
         .category-title { border-right: 4px solid #D35400; padding-right: 10px; margin: 25px 0 15px 0; font-weight: bold; color: #374151; }
         .btn-fixed { min-width: 75px; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; border-radius: 10px; transition: 0.2s; }
         .btn-fixed span { font-size: 0.65rem; font-weight: normal; }
-        .food-img { w-16 h-16 rounded-lg object-cover shadow-sm flex-shrink-0; }
+        .food-img { width: 4rem; height: 4rem; border-radius: 0.5rem; object-fit: cover; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); flex-shrink: 0; }
     </style>
 </head>
 <body class="bg-gray-50 pb-60">
@@ -46,14 +46,42 @@
 
     <main class="p-4 max-w-md mx-auto">
         
-        <h2 class="category-title">الذبائح (حسب الطلب)</h2>
+        <h2 class="category-title">اللحوم والذبائح</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="tes.jpg" onerror="this.src='https://via.placeholder.com/100?text=صورة'" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                    <img src="tes.jpg" onerror="this.src='https://via.placeholder.com/100?text=لحم'" class="food-img">
                     <div><h3 class="font-bold">تيس كامل مندي</h3><p class="text-orange-600 text-sm">1380 ريال</p></div>
                 </div>
                 <button onclick="addToCart('تيس كامل مندي', 1380)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="tes.jpg" onerror="this.src='https://via.placeholder.com/100?text=لحم'" class="food-img">
+                    <div><h3 class="font-bold">نص تيس مندي</h3><p class="text-orange-600 text-sm">690 ريال</p></div>
+                </div>
+                <button onclick="addToCart('نص تيس مندي', 690)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="tes.jpg" onerror="this.src='https://via.placeholder.com/100?text=لحم'" class="food-img">
+                    <div><h3 class="font-bold">ربع تيس مندي</h3><p class="text-orange-600 text-sm">350 ريال</p></div>
+                </div>
+                <button onclick="addToCart('ربع تيس مندي', 350)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="لحم مندي.jpg" onerror="this.src='https://via.placeholder.com/100?text=لحم'" class="food-img">
+                    <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600 text-sm">85 ريال</p></div>
+                </div>
+                <button onclick="addToCart('نفر لحم مندي', 85)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="hashi.jpg" onerror="this.src='https://via.placeholder.com/100?text=حاشي'" class="food-img">
+                    <div><h3 class="font-bold">نفر لحم حاشي</h3><p class="text-orange-600 text-sm">50 ريال</p></div>
+                </div>
+                <button onclick="addToCart('نفر لحم حاشي', 50)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
         </div>
 
@@ -61,7 +89,7 @@
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="chicken.jpg" onerror="this.src='https://via.placeholder.com/100?text=صورة'" class="w-16 h-16 rounded-lg object-cover shadow-sm">
+                    <img src="chicken.jpg" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
                     <h3 class="font-bold">دجاج مندي</h3>
                 </div>
                 <div class="flex gap-1">
@@ -69,30 +97,129 @@
                     <button onclick="addToCart('نص دجاج مندي', 21)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>21ر.س</span></button>
                 </div>
             </div>
-            </div>
-
-        <h2 class="category-title">اللحم مع الأرز</h2>
-        <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="لحم مندي.jpg" onerror="this.src='https://via.placeholder.com/100?text=صورة'" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                    <div><h3 class="font-bold">نفر لحم مندي</h3><p class="text-orange-600 text-sm">85 ريال</p></div>
+                    <img src="chicken.jpg" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
+                    <h3 class="font-bold">دجاج مدفون</h3>
                 </div>
-                <button onclick="addToCart('نفر لحم مندي', 85)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('حبة دجاج مدفون', 42)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>42ر.س</span></button>
+                    <button onclick="addToCart('نص دجاج مدفون', 21)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>21ر.س</span></button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="chicken.jpg" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
+                    <h3 class="font-bold">دجاج مضغوط</h3>
+                </div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('حبة دجاج مضغوط', 42)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>42ر.س</span></button>
+                    <button onclick="addToCart('نص دجاج مضغوط', 21)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>21ر.س</span></button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="chicken.jpg" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
+                    <h3 class="font-bold">دجاج شواية</h3>
+                </div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('حبة دجاج شواية', 42)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>42ر.س</span></button>
+                    <button onclick="addToCart('نص دجاج شواية', 21)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>21ر.س</span></button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="chicken.jpg" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
+                    <h3 class="font-bold">دجاج مظبي</h3>
+                </div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('حبة دجاج مظبي', 42)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>42ر.س</span></button>
+                    <button onclick="addToCart('نص دجاج مظبي', 21)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>21ر.س</span></button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="chicken.jpg" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
+                    <h3 class="font-bold">دجاج حنيذ</h3>
+                </div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('حبة دجاج حنيذ', 42)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>42ر.س</span></button>
+                    <button onclick="addToCart('نص دجاج حنيذ', 21)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>21ر.س</span></button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="chicken.jpg" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
+                    <h3 class="font-bold">دجاج مقلوبة</h3>
+                </div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('حبة دجاج مقلوبة', 45)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>45ر.س</span></button>
+                    <button onclick="addToCart('نص دجاج مقلوبة', 23)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>23ر.س</span></button>
+                </div>
             </div>
         </div>
 
-        <h2 class="category-title">الإدامات</h2>
+        <h2 class="category-title">الإدامات والشعبيات</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="edam.jpg" onerror="this.src='https://via.placeholder.com/100?text=صورة'" class="w-16 h-16 rounded-lg object-cover shadow-sm">
-                    <h3 class="font-bold text-sm">إدامات مشكلة</h3>
+                    <img src="edam.jpg" onerror="this.src='https://via.placeholder.com/100?text=إدام'" class="food-img">
+                    <h3 class="font-bold text-sm">إدامات (بامية/ملوخية/مشكل)</h3>
                 </div>
                 <div class="flex gap-1">
                     <button onclick="addToCart('إدام كبير', 10)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كبير <span>10ر.س</span></button>
                     <button onclick="addToCart('إدام صغير', 5)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">صغير <span>5ر.س</span></button>
                 </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="edam.jpg" onerror="this.src='https://via.placeholder.com/100?text=شعبي'" class="food-img">
+                    <h3 class="font-bold text-sm">جريش / فرسان</h3>
+                </div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('جريش كبير', 9)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كبير <span>9ر.س</span></button>
+                    <button onclick="addToCart('جريش صغير', 5)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">صغير <span>5ر.س</span></button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="category-title">المقبلات والسلطات</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="salad.jpg" onerror="this.src='https://via.placeholder.com/100?text=مقبلات'" class="food-img">
+                    <h3 class="font-bold text-sm">مقبلات مشكلة</h3>
+                </div>
+                <div class="flex gap-1">
+                    <button onclick="addToCart('مقبلات كبير', 15)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كبير <span>15ر.س</span></button>
+                    <button onclick="addToCart('مقبلات وسط', 12)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">وسط <span>12ر.س</span></button>
+                    <button onclick="addToCart('مقبلات صغير', 8)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">صغير <span>8ر.س</span></button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="salad.jpg" onerror="this.src='https://via.placeholder.com/100?text=سلطة'" class="food-img">
+                    <div><h3 class="font-bold">سلطة خضراء / تبولة</h3><p class="text-orange-600 text-sm">6 ريال</p></div>
+                </div>
+                <button onclick="addToCart('سلطة', 6)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+        </div>
+
+        <h2 class="category-title">الحلى</h2>
+        <div class="grid gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="dessert.jpg" onerror="this.src='https://via.placeholder.com/100?text=حلى'" class="food-img">
+                    <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600 text-sm">10 ريال</p></div>
+                </div>
+                <button onclick="addToCart('أم علي', 10)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="dessert.jpg" onerror="this.src='https://via.placeholder.com/100?text=حلى'" class="food-img">
+                    <div><h3 class="font-bold">كنافة</h3><p class="text-orange-600 text-sm">8 ريال</p></div>
+                </div>
+                <button onclick="addToCart('كنافة', 8)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
         </div>
 
@@ -141,7 +268,6 @@
             if(!customerName) return;
             let customerPhone = prompt("رقم الجوال:");
             if(!customerPhone) return;
-            // الملاحظة وعنوان العميل
             let address = prompt("الملاحظات (وصف العنوان أو ملاحظات الطلب):");
 
             const btn = document.getElementById('send-btn');
@@ -153,6 +279,7 @@
             let orderText = Object.keys(summary).map(key => `${key} [${summary[key]}]`).join(" + ");
 
             try {
+                // ملاحظة: الرابط أدناه يحتاج لبياناتك الخاصة في Google Scripts ليعمل بشكل كامل
                 const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
                 await fetch(scriptURL, {
                     method: 'POST',
@@ -160,7 +287,7 @@
                     body: JSON.stringify({
                         "الاسم": customerName,
                         "الجوال": customerPhone,
-                        "الوصف": address, // هنا تظهر الملاحظات في جدول البيانات
+                        "الوصف": address,
                         "الطلب": orderText,
                         "المجموع": total + " ريال"
                     })
@@ -177,5 +304,3 @@
     </script>
 </body>
 </html>
-
-
