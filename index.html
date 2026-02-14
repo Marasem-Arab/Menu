@@ -9,121 +9,108 @@
     <style> 
         body { font-family: 'Tajawal', sans-serif; }
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
-        .modal-content { background-color: white; margin: 20% auto; padding: 30px; border-radius: 20px; width: 85%; max-width: 400px; text-align: center; position: relative; animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .close-x { position: absolute; top: 10px; left: 15px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; line-height: 1; }
-        .category-title { border-right: 4px solid #ea580c; padding-right: 10px; margin: 20px 0 10px 0; font-weight: bold; color: #374151; }
-        /* تصميم موحد للصور */
-        .item-image-placeholder { width: 64px; height: 64px; background-color: #e5e7eb; border-radius: 0.5rem; display: flex; items-center: center; justify-content: center; font-size: 0.75rem; color: #9ca3af; flex-shrink: 0; overflow: hidden; }
-        .item-image-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-content { background-color: white; margin: 20% auto; padding: 30px; border-radius: 20px; width: 85%; max-width: 400px; text-align: center; position: relative; }
+        .category-title { border-right: 4px solid #ea580c; padding-right: 10px; margin: 25px 0 15px 0; font-weight: bold; color: #374151; }
+        
+        /* تنسيق الأزرار الموحد */
+        .btn-fixed {
+            width: 100px; /* توحيد العرض لجميع الأزرار */
+            height: 45px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+            font-size: 0.8rem;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+        .btn-fixed span {
+            font-size: 0.7rem;
+            opacity: 0.9;
+        }
+        
+        /* تنسيق مكان الصورة */
+        .item-image-placeholder { 
+            width: 70px; height: 70px; background-color: #f3f4f6; 
+            border-radius: 12px; flex-shrink: 0; display: flex; 
+            align-items: center; justify-content: center; color: #9ca3af; font-size: 0.7rem;
+        }
+        .item-image-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
     </style>
 </head>
-<body class="bg-gray-50 pb-40">
-
-    <div id="successModal" class="modal">
-        <div class="modal-content shadow-2xl">
-            <span onclick="closeModal()" class="close-x">×</span>
-            <div class="text-green-500 text-6xl mb-4">✅</div>
-            <h2 class="text-xl font-bold mb-2 text-gray-800">تم استلام طلبك!</h2>
-            <p id="modalMsg" class="text-gray-600 mb-6"></p>
-            <button onclick="closeModal()" class="bg-orange-600 text-white px-12 py-2 rounded-lg font-bold shadow-md hover:bg-orange-700 transition">موافق</button>
-        </div>
-    </div>
+<body class="bg-gray-50 pb-44">
 
     <header class="bg-orange-600 text-white p-6 text-center shadow-lg">
         <h1 class="text-2xl font-bold">مطعم مراسيم العرب</h1>
-        <p class="text-sm">أصالة المذاق في البدائع | الدفع عند الاستلام</p>
+        <p class="text-sm">البدائع - المنيو المطور</p>
     </header>
 
     <main class="p-4 max-w-md mx-auto">
-        
-        <h2 class="category-title">الذبائح (حسب الطلب)</h2>
-        <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="item-image-placeholder">صورة</div>
-                    <div><h3 class="font-bold">تيس كامل مندي</h3><p class="text-orange-600">1380 ريال</p></div>
-                </div>
-                <button onclick="addToCart('تيس كامل مندي', 1380)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
-            </div>
-        </div>
 
         <h2 class="category-title">الدجاج مع الأرز</h2>
         <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+            <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="item-image-placeholder">صورة</div>
-                    <div><h3 class="font-bold">دجاج مندي</h3><p class="text-orange-600 text-sm">21/42 ريال</p></div>
+                    <h3 class="font-bold text-gray-800">دجاج مندي</h3>
                 </div>
-                <div class="flex gap-1">
-                    <button onclick="addToCart('حبة دجاج مندي', 42)" class="bg-orange-600 text-white px-2 py-2 rounded-lg text-xs font-bold">كاملة</button>
-                    <button onclick="addToCart('نص دجاج مندي', 21)" class="bg-orange-600 text-white px-2 py-2 rounded-lg text-xs font-bold">نص</button>
+                <div class="flex gap-2">
+                    <button onclick="addToCart('حبة دجاج مندي', 42)" class="btn-fixed bg-orange-600 text-white font-bold">
+                        كاملة
+                        <span>42 ريال</span>
+                    </button>
+                    <button onclick="addToCart('نص دجاج مندي', 21)" class="btn-fixed bg-orange-100 text-orange-700 border border-orange-200 font-bold">
+                        نص
+                        <span>21 ريال</span>
+                    </button>
                 </div>
             </div>
-            </div>
+        </div>
 
         <h2 class="category-title">الإدامات</h2>
         <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+            <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="item-image-placeholder">صورة</div>
-                    <div><h3 class="font-bold">مشكل فرن</h3><p class="text-orange-600 text-sm">5/10 ريال</p></div>
+                    <h3 class="font-bold text-gray-800">مشكل فرن</h3>
                 </div>
-                <div class="flex gap-1">
-                    <button onclick="addToCart('مشكل فرن كبير', 10)" class="bg-orange-600 text-white px-2 py-2 rounded-lg text-xs font-bold">كبير</button>
-                    <button onclick="addToCart('مشكل فرن صغير', 5)" class="bg-orange-600 text-white px-2 py-2 rounded-lg text-xs font-bold">صغير</button>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="item-image-placeholder">صورة</div>
-                    <div><h3 class="font-bold">بامية</h3><p class="text-orange-600 text-sm">5/10 ريال</p></div>
-                </div>
-                <div class="flex gap-1">
-                    <button onclick="addToCart('بامية كبير', 10)" class="bg-orange-600 text-white px-2 py-2 rounded-lg text-xs font-bold">كبير</button>
-                    <button onclick="addToCart('بامية صغير', 5)" class="bg-orange-600 text-white px-2 py-2 rounded-lg text-xs font-bold">صغير</button>
+                <div class="flex gap-2">
+                    <button onclick="addToCart('مشكل فرن كبير', 10)" class="btn-fixed bg-orange-600 text-white font-bold">
+                        كبير
+                        <span>10 ريال</span>
+                    </button>
+                    <button onclick="addToCart('مشكل فرن صغير', 5)" class="btn-fixed bg-orange-100 text-orange-700 border border-orange-200 font-bold">
+                        صغير
+                        <span>5 ريال</span>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <h2 class="category-title">المقبلات والسلطات</h2>
+        <h2 class="category-title">السلطات</h2>
         <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+            <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="item-image-placeholder">صورة</div>
-                    <div><h3 class="font-bold">تبولة</h3><p class="text-orange-600">5 ريال</p></div>
+                    <h3 class="font-bold text-gray-800">تبولة</h3>
                 </div>
-                <button onclick="addToCart('تبولة', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="item-image-placeholder">صورة</div>
-                    <div><h3 class="font-bold">سلطة ذرة</h3><p class="text-orange-600">5 ريال</p></div>
-                </div>
-                <button onclick="addToCart('سلطة ذرة', 5)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
-            </div>
-        </div>
-
-        <h2 class="category-title">الحلا</h2>
-        <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="item-image-placeholder">صورة</div>
-                    <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600">10 ريال</p></div>
-                </div>
-                <button onclick="addToCart('أم علي', 10)" class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold transition">إضافة +</button>
+                <button onclick="addToCart('تبولة', 5)" class="btn-fixed bg-orange-600 text-white font-bold">
+                    إضافة
+                    <span>5 ريال</span>
+                </button>
             </div>
         </div>
 
     </main>
 
-    <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-2xl max-w-md mx-auto rounded-t-2xl border-t">
-        <div class="flex justify-between items-center mb-4">
-            <span class="font-bold text-lg text-gray-700">المجموع المستحق:</span>
+    <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-2xl max-w-md mx-auto rounded-t-3xl border-t">
+        <div class="flex justify-between items-center mb-4 px-2">
+            <span class="font-bold text-gray-600">المجموع:</span>
             <span class="text-orange-600 text-2xl font-bold"><span id="total-price">0</span> ريال</span>
         </div>
-        <button id="send-btn" onclick="sendOrder()" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition">
-            إتمام الطلب (توصيل للموقع)
+        <button onclick="sendOrder()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg active:scale-95 transition">
+            إرسال الطلب واتساب
         </button>
     </div>
 
@@ -137,50 +124,13 @@
             document.getElementById('total-price').innerText = total;
         }
 
-        function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
-            cart = []; total = 0;
-            document.getElementById('total-price').innerText = "0";
-            location.reload(); 
-        }
-
-        async function sendOrder() {
+        function sendOrder() {
             if (cart.length === 0) return alert("السلة فارغة!");
-            let customerName = prompt("الاسم الكريم:");
-            if(!customerName) return;
-            let customerPhone = prompt("رقم الجوال:");
-            if(!customerPhone) return;
-            let address = prompt("وصف العنوان:");
-
-            const btn = document.getElementById('send-btn');
-            btn.disabled = true;
-            btn.innerText = "جاري الإرسال...";
-
             let summary = {};
             cart.forEach(item => { summary[item.name] = (summary[item.name] || 0) + 1; });
-            let orderText = Object.keys(summary).map(key => `${key} (${summary[key]})`).join(" + ");
-
-            try {
-                const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
-                await fetch(scriptURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: JSON.stringify({
-                        "الاسم": customerName,
-                        "الجوال": customerPhone,
-                        "الوصف": address,
-                        "الطلب": orderText,
-                        "المجموع": total + " ريال"
-                    })
-                });
-                document.getElementById('modalMsg').innerText = "تم تسجيل طلبك بنجاح.";
-                document.getElementById('successModal').style.display = 'block';
-            } catch (err) {
-                alert("خطأ في الإرسال");
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "إتمام الطلب (توصيل للموقع)";
-            }
+            let orderText = Object.keys(summary).map(key => `${key} (${summary[key]})`).join("%0A");
+            let whatsappUrl = `https://wa.me/9665XXXXXXXX?text=طلب جديد:%0A${orderText}%0A%0Aالمجموع: ${total} ريال`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
