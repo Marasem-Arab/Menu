@@ -505,12 +505,17 @@
     let currentChickenItem = null;
 
     // --- وظائف السلة الجديدة ---
+    // --- وظائف السلة الجديدة (المعدلة للتمرير) ---
     function toggleCartDrawer() {
         const drawer = document.getElementById('cartDrawer');
-        drawer.style.display = drawer.style.display === 'block' ? 'none' : 'block';
-        renderCart();
+        // غيرنا block إلى flex هنا لضمان عمل التمرير (Scroll)
+        if (drawer.style.display === 'none' || drawer.style.display === '') {
+            drawer.style.display = 'flex'; 
+            renderCart();
+        } else {
+            drawer.style.display = 'none';
+        }
     }
-
 
 
     function calculateTotal() {
@@ -707,6 +712,7 @@
 </script>
 </body>
 </html>
+
 
 
 
