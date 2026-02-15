@@ -669,22 +669,56 @@
         }
 
         // تجهيز نص الواتساب
-        let orderDetailsText = cart.map(item => `${item.name} [العدد: ${item.qty}]`).join(" + ");
-        
-        let whatsappMsg = `*طلب جديد - مطعم مراسيم العرب*%0A`;
-        whatsappMsg += `*الاسم:* ${customerName}%0A`;
-        whatsappMsg += `*الجوال:* ${customerPhone}%0A`;
-        whatsappMsg += `*العنوان:* ${addressDesc}%0A`;
-        whatsappMsg += `*الموقع:* ${googleMapsLink}%0A`;
-        whatsappMsg += `--------------------------%0A`;
-        cart.forEach(item => {
-           
-            whatsappMsg += ` ▪️ ${item.name} × ${item.qty}%0A`;
-        });
-        whatsappMsg += `--------------------------%0A`;
-        whatsappMsg += `*المجموع الكلي: ${total} ريال*%0A`;
-        whatsappMsg += `*الملاحظات:* ${orderNote}`;
+       // 1. تجهيز نص الأصناف (المسؤول عن المربع البني في الإيميل)
+// تم تغيير " + " إلى "%0A" لضمان نزول كل صنف في سطر جديد
+let orderDetailsText = cart.map((item, index) => `${index + 1}. ${item.name} [العدد: ${item.qty}]`).join("%0A");
 
+// 2. تجهيز نص الواتساب (منسق بالرموز التعبيرية)
+let whatsappMsg = `*طلب جديد - مطعم مراسيم العرب*%0A`;
+whatsappMsg += `*الاسم:* ${customerName}%0A`;
+whatsappMsg += `*الجوال:* ${customerPhone}%0A`;
+whatsappMsg += `*العنوان:* ${addressDesc}%0A`;
+whatsappMsg += `*الموقع:* ${googleMapsLink}%0A`;
+whatsappMsg += `--------------------------%0A`;
+
+// حلقة تكرار لإضافة الأصناف فوق بعضها في نص الواتساب
+cart.forEach((item, index) => {
+    // تم استخدام %0A لكسر السطر بعد كل صنف
+    whatsappMsg += `▪️ ${item.name} × ${item.qty}%0A`;
+});
+
+whatsappMsg += `--------------------------%0A`;
+whatsappMsg += `*المجموع الكلي: ${total} ريال*%0A`;
+whatsappMsg += `*الملاحظات:* ${orderNote}`;
+
+// 3. إرسال البيانات (Data Integrity) إلى Google Sheets / Email
+try {
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
+    
+    // إرسال الطلب للخلفية (الإيميل والجوجل شيت)
+    await fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        cache: 'no-cache',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: customerName,
+            phone: customerPhone,
+            address: addressDesc,
+            location: googleMapsLink,
+            details: orderDetailsText, // هذا المتغير الآن مرتب سطراً بسطر
+            total: total,
+            note: orderNote
+        })
+    });
+
+    // بعد نجاح الإرسال للإيميل، نفتح الواتساب للعميل بشكل تلقائي
+    const whatsappUrl = `https://wa.me/966XXXXXXXXX?text=${whatsappMsg}`;
+    window.open(whatsappUrl, '_blank');
+
+} catch (error) {
+    console.error('Error!', error.message);
+}
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
             await fetch(scriptURL, {
@@ -713,6 +747,7 @@
 </script>
 </body>
 </html>
+
 
 
 
