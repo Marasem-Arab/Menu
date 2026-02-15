@@ -204,7 +204,7 @@
         </div>
         <div class="flex flex-col items-center">
              
-             <button onclick="addToCart('ربع شواية سادة', 10)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +<span>10ر.س</span></button>
+             <button onclick="addToCart('ربع شواية سادة', 10)" class="btn-fixed bg-orange-600 text-white font-bold">ربع<span>10ر.س</span></button>
         </div>
         </div>
         </div>
@@ -313,7 +313,7 @@
                     <img src="صور/تبولة.png" onerror="this.src='https://via.placeholder.com/100?text=سلطة'" class="food-img">
                     <div><h3 class="font-bold">سلطة تبولة</h3><p class="text-orange-600 text-sm">6 ريال</p></div>
                 </div>
-                <button onclick="addToCart('تبولة', 6)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+                <button onclick="addToCart('سلطة تبولة', 6)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
@@ -431,8 +431,7 @@
             إرسال الطلب عبر واتساب
         </button>
     </div>
-
-  <script>
+<script>
     let cart = [];
     let total = 0;
     let currentItem = null; // لتخزين الصنف المؤقت قبل اختيار الرز
@@ -440,19 +439,22 @@
 
     // الوظيفة الرئيسية عند الضغط على زر إضافة
     function addToCart(name, price) {
-        // قائمة الأصناف التي لا تحتاج لاختيار رز (أضفنا سادة وشواية)
-        const noRiceCategories = ['ملوخية', 'قرصان', 'بامية', 'مشكل', 'جريش', 'مقبلات', 'سلطة', 'أم علي', 'حلا النجم', 'كنافة', 'سادة', 'شواية'];
+        // 1. قائمة الأصناف التي لا تحتاج رز نهائياً (حذفنا 'شواية' و 'سادة' من هنا لحل المشكلة)
+        const noRiceCategories = ['ملوخية', 'مصقع','بابا غونج', 'قرصان', 'بامية', 'حمص','مشكل', 'جريش', 'مقبلات', 'سلطة', 'أم علي', 'حلا النجم', 'كنافة'];
         
-        // التحقق إذا كان الصنف يحتاج رز
-        const needsRice = !noRiceCategories.some(cat => name.includes(cat));
+        // 2. التحقق إذا كان الصنف من المقبلات/الحلى
+        const isSideDish = noRiceCategories.some(cat => name.includes(cat));
 
-        if (needsRice) {
-            // حفظ بيانات الصنف وفتح مودال الرز
+        // 3. التحقق إذا كان الصنف هو الربع سادة تحديداً
+        const isPlainQuarter = (name === 'ربع شواية سادة');
+
+        if (isSideDish || isPlainQuarter) {
+            // إضافة مباشرة للأصناف التي لا تحتاج رز
+            processAdding(name, price);
+        } else {
+            // أي دجاج آخر (بما فيه الشواية العادي) سيطلب اختيار الرز
             currentItem = { name, price };
             document.getElementById('riceModal').style.display = 'block';
-        } else {
-            // إضافة مباشرة للأصناف التي لا تحتاج رز (مثل الربع شواية السادة)
-            processAdding(name, price);
         }
     }
 
@@ -587,6 +589,7 @@
     
 </body>
 </html>
+
 
 
 
