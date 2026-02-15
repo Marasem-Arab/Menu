@@ -17,7 +17,16 @@
         .btn-fixed { min-width: 75px; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; border-radius: 10px; transition: 0.2s; }
         .btn-fixed span { font-size: 0.65rem; font-weight: normal; }
         .food-img { width: 4rem; height: 4rem; border-radius: 0.5rem; object-fit: cover; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); flex-shrink: 0; }
-    </style>
+
+        /* تصميم زر السلة العائم */
+        .cart-float-btn { position: fixed; bottom: 180px; left: 20px; background: #D35400; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 1000; }
+        .cart-badge { position: absolute; top: 0; right: 0; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; }
+
+        /* نافذة السلة الصغيرة */
+        #cartDrawer { display: none; position: fixed; bottom: 100px; left: 20px; right: 20px; background: white; z-index: 1001; border-radius: 20px; box-shadow: 0 -5px 25px rgba(0,0,0,0.2); max-height: 60vh; overflow-y: auto; padding: 20px; border: 1px solid #eee; }
+        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .qty-btn { background: #eee; width: 25px; height: 25px; border-radius: 5px; font-weight: bold; }
+        </style>
 </head>
 <body class="bg-gray-50 pb-60">
 
@@ -45,6 +54,21 @@
     </header>
 
     <main class="p-4 max-w-md mx-auto">
+
+
+    <div class="cart-float-btn" onclick="toggleCartDrawer()">
+    <i class="fas fa-shopping-basket text-2xl"></i>
+    <span id="cartCount" class="cart-badge">0</span>
+    </div>
+
+    <div id="cartDrawer" class="max-w-md mx-auto">
+    <div class="flex justify-between items-center mb-4 border-b pb-2">
+        <h3 class="font-bold text-lg">سلة الطلبات</h3>
+        <button onclick="toggleCartDrawer()" class="text-gray-400">إغلاق ×</button>
+    </div>
+    <div id="cartItemsList">
+      </div>
+    </div>
         
         <h2 class="category-title">اللحوم والذبائح</h2>
         <div class="grid gap-4">
@@ -428,37 +452,72 @@
             <span class="text-orange-600 text-2xl font-bold"><span id="total-price">0</span> ريال</span>
         </div>
         <button id="send-btn" onclick="sendOrder()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg active:scale-95 transition">
-            إرسال الطلب عبر واتساب
+            إرسال الطلب
         </button>
     </div>
 <script>
-    let cart = [];
+    let cart = []; 
     let total = 0;
-    let currentItem = null; // لتخزين الصنف المؤقت قبل اختيار الرز
-    let currentChickenItem = null; // جديد: لتخزين صنف الدجاج السادة قبل اختيار النوع
+    let currentItem = null; 
+    let currentChickenItem = null;
 
-    // الوظيفة الرئيسية عند الضغط على زر إضافة
+    // --- وظائف السلة الجديدة ---
+    function toggleCartDrawer() {
+        const drawer = document.getElementById('cartDrawer');
+        drawer.style.display = drawer.style.display === 'block' ? 'none' : 'block';
+        renderCart();
+    }
+
+    function calculateTotal() {
+        total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        document.getElementById('total-price').innerText = total;
+        document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+        renderCart();
+    }
+
+    function renderCart() {
+        const listDiv = document.getElementById('cartItemsList');
+        listDiv.innerHTML = '';
+        if (cart.length === 0) {
+            listDiv.innerHTML = '<p class="text-center text-gray-400 py-4">السلة فارغة</p>';
+            return;
+        }
+        cart.forEach((item, index) => {
+            listDiv.innerHTML += `
+                <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                    <div class="flex-1 text-sm font-bold text-gray-700">${item.name}</div>
+                    <div class="flex items-center gap-3 px-2">
+                        <button onclick="changeQty(${index}, -1)" class="w-7 h-7 bg-gray-100 rounded-full font-bold">-</button>
+                        <span class="font-bold">${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)" class="w-7 h-7 bg-gray-100 rounded-full font-bold">+</button>
+                    </div>
+                    <div class="w-16 text-left text-orange-600 font-bold">${item.price * item.qty}</div>
+                </div>`;
+        });
+    }
+
+    function changeQty(index, delta) {
+        cart[index].qty += delta;
+        if (cart[index].qty <= 0) {
+            cart.splice(index, 1);
+        }
+        calculateTotal();
+    }
+
+    // --- الوظائف الأساسية ---
     function addToCart(name, price) {
-        // 1. قائمة الأصناف التي لا تحتاج رز نهائياً (حذفنا 'شواية' و 'سادة' من هنا لحل المشكلة)
         const noRiceCategories = ['ملوخية', 'مصقع','بابا غونج', 'قرصان', 'بامية', 'حمص','مشكل', 'جريش', 'مقبلات', 'سلطة', 'أم علي', 'حلا النجم', 'كنافة'];
-        
-        // 2. التحقق إذا كان الصنف من المقبلات/الحلى
         const isSideDish = noRiceCategories.some(cat => name.includes(cat));
-
-        // 3. التحقق إذا كان الصنف هو الربع سادة تحديداً
         const isPlainQuarter = (name === 'ربع شواية سادة');
 
         if (isSideDish || isPlainQuarter) {
-            // إضافة مباشرة للأصناف التي لا تحتاج رز
             processAdding(name, price);
         } else {
-            // أي دجاج آخر (بما فيه الشواية العادي) سيطلب اختيار الرز
             currentItem = { name, price };
             document.getElementById('riceModal').style.display = 'block';
         }
     }
 
-    // --- جديد: وظائف الدجاج السادة حسب الطلب ---
     function openChickenModal(sizeName, price) {
         currentChickenItem = { sizeName, price };
         document.getElementById('chickenTypeModal').style.display = 'block';
@@ -476,9 +535,7 @@
         document.getElementById('chickenTypeModal').style.display = 'none';
         currentChickenItem = null;
     }
-    // ---------------------------------------
 
-    // وظيفة اختيار نوع الرز من المودال
     function confirmRice(riceType) {
         if (currentItem) {
             let finalName = `${currentItem.name} (${riceType})`;
@@ -487,15 +544,18 @@
         }
     }
 
-    // إتمام عملية الإضافة للسلة وتحديث الواجهة
     function processAdding(name, price) {
-        cart.push({ name, price });
-        total += price;
-        document.getElementById('total-price').innerText = total;
-        
-        // تأثير بصري على الزر المكتوب عليه "إضافة"
-        if(event && event.target && event.target.tagName === 'BUTTON') {
-            const btn = event.target;
+        const existingItem = cart.find(item => item.name === name);
+        if (existingItem) {
+            existingItem.qty += 1;
+        } else {
+            cart.push({ name: name, price: price, qty: 1 });
+        }
+        calculateTotal();
+
+        // تأثير بصري
+        if(window.event && window.event.target) {
+            const btn = window.event.target;
             const originalText = btn.innerHTML;
             btn.innerText = "تم ✅";
             setTimeout(() => btn.innerHTML = originalText, 800);
@@ -509,11 +569,10 @@
 
     function closeModal() {
         document.getElementById('successModal').style.display = 'none';
-        cart = []; total = 0;
-        document.getElementById('total-price').innerText = "0";
         location.reload(); 
     }
 
+    // --- وظيفة الإرسال المتطورة ---
     async function sendOrder() {
         if (cart.length === 0) return alert("السلة فارغة!");
         
@@ -521,74 +580,74 @@
         if(!customerName) return;
 
         let customerPhone = prompt("رقم الجوال (05XXXXXXXX):");
-        if(!customerPhone) return;
-        const phoneRegex = /^05\d{8}$/;
-        if (!phoneRegex.test(customerPhone)) {
-            alert("خطأ: يجب أن يبدأ الرقم بـ 05 ويتكون من 10 أرقام.");
-            return;
+        if(!customerPhone || !/^05\d{8}$/.test(customerPhone)) {
+            alert("خطأ في رقم الجوال"); return;
         }
 
-        let addressDesc = prompt("وصف العنوان (الحي - الشارع - رقم البيت):");
+        let addressDesc = prompt("وصف العنوان (الحي - الشارع):");
         if(!addressDesc) return;
-        let orderNote = prompt("هل لديك ملاحظات إضافية على الطلب؟") || "لا يوجد";
+        
+        let orderNote = prompt("ملاحظات إضافية؟") || "لا يوجد";
 
         const btn = document.getElementById('send-btn');
         btn.disabled = true;
-        btn.innerText = "جاري تحديد موقعك...";
+        btn.innerText = "جاري معالجة طلبك...";
 
-        let googleMapsLink = "العميل لم يشارك الموقع";
+        let googleMapsLink = "لم يتم مشاركة الموقع";
         if (confirm("هل تسمح بمشاركة موقعك (GPS) لتسهيل وصول السائق؟")) {
             try {
-                const position = await new Promise((res, rej) => {
-                    navigator.geolocation.getCurrentPosition(res, rej, { 
-                        enableHighAccuracy: true, 
-                        timeout: 8000 
-                    });
+                const pos = await new Promise((res, rej) => {
+                    navigator.geolocation.getCurrentPosition(res, rej, { timeout: 8000 });
                 });
-                googleMapsLink = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
-            } catch (err) {
-                alert("تعذر تحديد الموقع تلقائياً، سيتم إرسال الطلب بدونه.");
-            }
+                googleMapsLink = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
+            } catch (err) { alert("سيتم الإرسال بدون GPS"); }
         }
 
-        btn.innerText = "جاري إرسال الطلب...";
-
-        let summary = {};
-        cart.forEach(item => { summary[item.name] = (summary[item.name] || 0) + 1; });
-        let orderText = Object.keys(summary).map(key => `${key} [${summary[key]}]`).join(" + ");
-        let formattedDetails = Object.keys(summary).map(key => ({ name: key, count: summary[key] }));
+        // تجهيز نص الواتساب
+        let orderDetailsText = cart.map(item => `${item.name} [العدد: ${item.qty}]`).join(" + ");
+        
+        let whatsappMsg = `*طلب جديد - مطعم مراسيم العرب*%0A`;
+        whatsappMsg += `*الاسم:* ${customerName}%0A`;
+        whatsappMsg += `*الجوال:* ${customerPhone}%0A`;
+        whatsappMsg += `*العنوان:* ${addressDesc}%0A`;
+        whatsappMsg += `*الموقع:* ${googleMapsLink}%0A`;
+        whatsappMsg += `--------------------------%0A`;
+        cart.forEach(item => {
+            whatsappMsg += `- ${item.name} (${item.qty} حبة)%0A`;
+        });
+        whatsappMsg += `--------------------------%0A`;
+        whatsappMsg += `*المجموع الكلي: ${total} ريال*%0A`;
+        whatsappMsg += `*الملاحظات:* ${orderNote}`;
 
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
-            
             await fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
                 body: JSON.stringify({
-                    "الاسم": customerName,
-                    "الجوال": customerPhone,
-                    "الوصف": addressDesc,
-                    "الملاحظة": orderNote,
-                    "الطلب": orderText,
-                    "تفاصيل_الطلب": formattedDetails,
-                    "المجموع": total + " ريال",
-                    "الموقع": googleMapsLink
+                    "الاسم": customerName, "الجوال": customerPhone, "الوصف": addressDesc,
+                    "الطلب": orderDetailsText, "المجموع": total, "الموقع": googleMapsLink
                 })
             });
 
-            document.getElementById('modalMsg').innerText = "تم استلام طلبك يا " + customerName;
+            document.getElementById('modalMsg').innerText = "تم تجهيز طلبك يا " + customerName;
             document.getElementById('successModal').style.display = 'block';
+            
+            setTimeout(() => {
+                window.open(`https://wa.me/966500000000?text=${whatsappMsg}`, '_blank');
+            }, 1000);
+
         } catch (err) {
-            alert("حدث خطأ في الاتصال، يرجى المحاولة مرة أخرى.");
+            alert("حدث خطأ، حاول مرة أخرى");
         } finally {
             btn.disabled = false;
             btn.innerText = "إرسال الطلب عبر واتساب";
         }
     }
 </script>
-    
 </body>
 </html>
+
 
 
 
