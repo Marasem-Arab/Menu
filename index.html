@@ -678,7 +678,8 @@
         whatsappMsg += `*الموقع:* ${googleMapsLink}%0A`;
         whatsappMsg += `--------------------------%0A`;
         cart.forEach(item => {
-            whatsappMsg += `- ${item.name} (${item.qty} حبة)%0A`;
+           
+            whatsappMsg += ` ▪️ ${item.name} × ${item.qty}%0A`;
         });
         whatsappMsg += `--------------------------%0A`;
         whatsappMsg += `*المجموع الكلي: ${total} ريال*%0A`;
@@ -712,6 +713,7 @@
 </script>
 </body>
 </html>
+
 
 
 
