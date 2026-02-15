@@ -504,11 +504,8 @@
     let currentItem = null; 
     let currentChickenItem = null;
 
-    // --- وظائف السلة الجديدة ---
-    // --- وظائف السلة الجديدة (المعدلة للتمرير) ---
     function toggleCartDrawer() {
         const drawer = document.getElementById('cartDrawer');
-        // غيرنا block إلى flex هنا لضمان عمل التمرير (Scroll)
         if (drawer.style.display === 'none' || drawer.style.display === '') {
             drawer.style.display = 'flex'; 
             renderCart();
@@ -517,26 +514,16 @@
         }
     }
 
-
     function calculateTotal() {
-        // 1. حساب المجموع الكلي بناءً على الكميات
         total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-        
-        // 2. تحديث المجموع في الصفحة الرئيسية (الشريط السفلي)
         const mainTotal = document.getElementById('total-price');
         if(mainTotal) mainTotal.innerText = total;
-        
-        // 3. تحديث المجموع داخل نافذة السلة (الجزء الثابت)
         const innerTotal = document.getElementById('inner-total');
         if(innerTotal) innerTotal.innerText = total;
-
-        // 4. تحديث عداد الأيقونة العائمة
         const cartCount = document.getElementById('cartCount');
         if(cartCount) {
             cartCount.innerText = cart.reduce((sum, item) => sum + item.qty, 0);
         }
-
-        // 5. إعادة بناء قائمة الأصناف داخل السلة
         renderCart();
     }
     
@@ -569,12 +556,10 @@
         calculateTotal();
     }
 
-    // --- الوظائف الأساسية ---
     function addToCart(name, price) {
         const noRiceCategories = ['ملوخية', 'مصقع','بابا غونج', 'قرصان', 'بامية', 'حمص','مشكل', 'جريش', 'مقبلات', 'سلطة', 'أم علي', 'حلا النجم', 'كنافة'];
         const isSideDish = noRiceCategories.some(cat => name.includes(cat));
         const isPlainQuarter = (name === 'ربع شواية سادة');
-
         if (isSideDish || isPlainQuarter) {
             processAdding(name, price);
         } else {
@@ -617,8 +602,6 @@
             cart.push({ name: name, price: price, qty: 1 });
         }
         calculateTotal();
-
-        // تأثير بصري
         if(window.event && window.event.target) {
             const btn = window.event.target;
             const originalText = btn.innerHTML;
@@ -637,7 +620,7 @@
         location.reload(); 
     }
 
-    // --- وظيفة الإرسال المتطورة ---
+    // --- وظيفة الإرسال المعدلة للإيميل فقط ---
     async function sendOrder() {
         if (cart.length === 0) return alert("السلة فارغة!");
         
@@ -656,10 +639,10 @@
 
         const btn = document.getElementById('send-btn');
         btn.disabled = true;
-        btn.innerText = "جاري معالجة طلبك...";
+        btn.innerText = "جاري إرسال طلبك...";
 
         let googleMapsLink = "لم يتم مشاركة الموقع";
-        if (confirm("هل تسمح بمشاركة موقعك (GPS) لتسهيل وصول السائق؟")) {
+        if (confirm("هل تسمح بمشاركة موقعك (GPS)؟")) {
             try {
                 const pos = await new Promise((res, rej) => {
                     navigator.geolocation.getCurrentPosition(res, rej, { timeout: 8000 });
@@ -668,85 +651,41 @@
             } catch (err) { alert("سيتم الإرسال بدون GPS"); }
         }
 
-        // تجهيز نص الواتساب
-       // 1. تجهيز نص الأصناف (المسؤول عن المربع البني في الإيميل)
-// تم تغيير " + " إلى "%0A" لضمان نزول كل صنف في سطر جديد
-let orderDetailsText = cart.map((item, index) => `${index + 1}. ${item.name} [العدد: ${item.qty}]`).join("%0A");
+        // --- تجهيز نص الأصناف للإيميل (سطر جديد \n يضمن الترتيب الرأسي) ---
+        let orderDetailsText = cart.map((item, index) => `• ${item.name} [العدد: ${item.qty}]`).join("\n");
 
-// 2. تجهيز نص الواتساب (منسق بالرموز التعبيرية)
-let whatsappMsg = `*طلب جديد - مطعم مراسيم العرب*%0A`;
-whatsappMsg += `*الاسم:* ${customerName}%0A`;
-whatsappMsg += `*الجوال:* ${customerPhone}%0A`;
-whatsappMsg += `*العنوان:* ${addressDesc}%0A`;
-whatsappMsg += `*الموقع:* ${googleMapsLink}%0A`;
-whatsappMsg += `--------------------------%0A`;
-
-// حلقة تكرار لإضافة الأصناف فوق بعضها في نص الواتساب
-cart.forEach((item, index) => {
-    // تم استخدام %0A لكسر السطر بعد كل صنف
-    whatsappMsg += `▪️ ${item.name} × ${item.qty}%0A`;
-});
-
-whatsappMsg += `--------------------------%0A`;
-whatsappMsg += `*المجموع الكلي: ${total} ريال*%0A`;
-whatsappMsg += `*الملاحظات:* ${orderNote}`;
-
-// 3. إرسال البيانات (Data Integrity) إلى Google Sheets / Email
-try {
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
-    
-    // إرسال الطلب للخلفية (الإيميل والجوجل شيت)
-    await fetch(scriptURL, {
-        method: 'POST',
-        mode: 'no-cors',
-        cache: 'no-cache',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            name: customerName,
-            phone: customerPhone,
-            address: addressDesc,
-            location: googleMapsLink,
-            details: orderDetailsText, // هذا المتغير الآن مرتب سطراً بسطر
-            total: total,
-            note: orderNote
-        })
-    });
-
-    // بعد نجاح الإرسال للإيميل، نفتح الواتساب للعميل بشكل تلقائي
-    const whatsappUrl = `https://wa.me/966XXXXXXXXX?text=${whatsappMsg}`;
-    window.open(whatsappUrl, '_blank');
-
-} catch (error) {
-    console.error('Error!', error.message);
-}
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
+            
             await fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
                 body: JSON.stringify({
-                    "الاسم": customerName, "الجوال": customerPhone, "الوصف": addressDesc,
-                    "الطلب": orderDetailsText, "المجموع": total, "الموقع": googleMapsLink
+                    "الاسم": customerName,
+                    "الجوال": customerPhone,
+                    "الوصف": addressDesc,
+                    "الطلب": orderDetailsText, // سيظهر الآن فوق بعضه بشكل مرتب
+                    "المجموع": total + " ريال",
+                    "الموقع": googleMapsLink,
+                    "الملاحظات": orderNote
                 })
             });
 
-            document.getElementById('modalMsg').innerText = "تم تجهيز طلبك يا " + customerName;
+            // إظهار رسالة النجاح في الموقع
+            document.getElementById('modalMsg').innerText = "تم استلام طلبك يا " + customerName;
             document.getElementById('successModal').style.display = 'block';
-            
-            setTimeout(() => {
-                window.open(`https://wa.me/966500000000?text=${whatsappMsg}`, '_blank');
-            }, 1000);
 
         } catch (err) {
-            alert("حدث خطأ، حاول مرة أخرى");
+            alert("حدث خطأ في الاتصال، حاول مرة أخرى");
         } finally {
             btn.disabled = false;
-            btn.innerText = "إرسال الطلب عبر واتساب";
+            btn.innerText = "إرسال الطلب";
         }
     }
 </script>
 </body>
 </html>
+
 
 
 
