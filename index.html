@@ -29,25 +29,28 @@
     /* تنسيق السلة المطور - نظام الطبقات الثابتة */
 #cartDrawer {
     position: fixed;
-    bottom: 110px; /* المسافة من الأسفل ليكون فوق الشريط الرئيسي */
-    left: 20px;
-    right: 20px;
+    bottom: 110px; /* فوق شريط المجموع السفلي */
+    left: 10px;
+    right: 10px;
     background: white;
     z-index: 1001;
     border-radius: 20px;
-    box-shadow: 0 -5px 30px rgba(0,0,0,0.3);
-    max-height: 65vh;
-    overflow: hidden;
-    display: none; /* يتم التحكم بالظهور عبر الجافا سكريبت */
-    flex-direction: column; 
-    border: 1px solid #ddd;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+    
+    /* هذا أهم جزء: نحدد طول السلة بـ 60% من طول الشاشة */
+    height: 60vh; 
+    display: none; 
+    flex-direction: column; /* ترتيب العناصر: رأس، قائمة، ذيل */
+    overflow: hidden; /* يمنع السلة نفسها من التمدد */
 }
 
-/* منطقة عرض المنتجات - هي الوحيدة التي تتحرك Scroll */
 #cartItemsList {
-    overflow-y: auto;
-    flex: 1; /* تأخذ المساحة المتاحة وتترك الباقي للمجموع */
-    padding: 10px 15px;
+    flex: 1; /* يخلي القائمة تأخذ كل المساحة المتاحة بالنص */
+    overflow-y: scroll; /* إجبار التمرير العمودي */
+    padding: 10px;
+    background: #fff;
+    /* إضافة لمسة سلاسة للآيفون */
+    -webkit-overflow-scrolling: touch;
 }
 
 /* حاوية المجموع وزر الإرسال - ثابتة دائماً في أسفل النافذة */
@@ -483,9 +486,6 @@
             <span class="font-bold text-gray-600">إجمالي السلة:</span>
             <span class="text-orange-600 font-bold text-xl"><span id="inner-total">0</span> ريال</span>
         </div>
-        <button onclick="sendOrder()" class="w-full bg-green-600 text-white py-3 rounded-xl font-bold text-lg shadow-md active:scale-95 transition">
-            تأكيد وإرسال الطلب
-        </button>
     </div>
 </div>
 
@@ -707,6 +707,7 @@
 </script>
 </body>
 </html>
+
 
 
 
