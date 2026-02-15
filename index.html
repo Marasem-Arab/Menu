@@ -180,6 +180,50 @@
             </div>
         </div>
 
+
+        <h2 class="category-title">دجاج سادة حسب الطلب</h2>
+        <div class="grid gap-4">
+        <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="دجاج مندي.png" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
+            <div>
+                <h3 class="font-bold">دجاج سادة</h3>
+                <p class="text-orange-600 text-[10px] leading-tight mt-1">يمكنك اختيار نوع الدجاج بعد الإضافة</p>
+            </div>
+        </div>
+        <div class="flex gap-1">
+            <button onclick="openChickenModal('كاملة', 28)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>28ر.س</span></button>
+            <button onclick="openChickenModal('نص', 14)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>14ر.س</span></button>
+        </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="صور/شواية.png" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
+                <h3 class="font-bold">ربع دجاج شواية سادة</h3>
+        </div>
+        <div class="flex flex-col items-center">
+             <p class="text-orange-600 font-bold mb-1">10 ريال</p>
+             <button onclick="addToCart('ربع شواية سادة', 10)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+        </div>
+        </div>
+        </div>
+
+        <div id="chickenTypeModal" class="modal">
+        <div class="modal-content shadow-2xl">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">اختر نوع الدجاج</h2>
+        <div class="grid grid-cols-1 gap-3">
+            <button onclick="confirmChickenType('مندي')" class="bg-gray-100 py-3 rounded-xl font-bold">مندي</button>
+            <button onclick="confirmChickenType('مظبي')" class="bg-gray-100 py-3 rounded-xl font-bold">مظبي</button>
+             <button onclick="confirmChickenType('مندي')" class="bg-gray-100 py-3 rounded-xl font-bold">مضغوط</button>
+            <button onclick="confirmChickenType('مدفون')" class="bg-gray-100 py-3 rounded-xl font-bold">مدفون</button>
+            <button onclick="confirmChickenType('شواية')" class="bg-gray-100 py-3 rounded-xl font-bold">شواية</button>
+             <button onclick="confirmChickenType('مندي')" class="bg-gray-100 py-3 rounded-xl font-bold">حنيذ</button>
+        </div>
+        <button onclick="closeChickenModal()" class="mt-4 text-gray-500 underline">إلغاء</button>
+        </div>
+        </div>
+        
         <h2 class="category-title">الإدامات والشعبيات</h2>
         <div class="grid gap-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
@@ -346,9 +390,9 @@
                     <h3 class="font-bold">كنافة</h3>
                 </div>
                <div class="flex gap-1">
-                    <button onclick="addToCart('بستاشيو', 15)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">بستاشيو<span>15ر.س</span></button>
-                    <button onclick="addToCart('نوتلا', 12)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نوتلا<span>12ر.س</span></button>
-                    <button onclick="addToCart('القشطة', 8)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">القشطة<span>8ر.س</span></button>
+                    <button onclick="addToCart('كنافة بستاشيو', 15)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">بستاشيو<span>15ر.س</span></button>
+                    <button onclick="addToCart('كنافة نوتلا', 12)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نوتلا<span>12ر.س</span></button>
+                    <button onclick="addToCart('كنافة بالقشطة', 8)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">القشطة<span>8ر.س</span></button>
                 </div>
             </div>
         </div>
@@ -361,7 +405,6 @@
             <button onclick="confirmRice('مندي')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مندي</button>
             <button onclick="confirmRice('بشاور')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز بشاور</button>
             <button onclick="confirmRice('مضغوط')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مضغوط (أحمر)</button>
-            <button onclick="confirmRice('بدون رز')" class="bg-red-50 hover:bg-red-100 py-3 rounded-xl font-bold border border-red-200 text-red-600">بدون رز</button>
         </div>
         <button onclick="closeRiceModal()" class="mt-4 text-gray-500 underline">إلغاء</button>
      </div>
@@ -389,15 +432,16 @@
         </button>
     </div>
 
-    <script>
+  <script>
     let cart = [];
     let total = 0;
     let currentItem = null; // لتخزين الصنف المؤقت قبل اختيار الرز
+    let currentChickenItem = null; // جديد: لتخزين صنف الدجاج السادة قبل اختيار النوع
 
     // الوظيفة الرئيسية عند الضغط على زر إضافة
     function addToCart(name, price) {
-        // قائمة الأصناف التي لا تحتاج لاختيار رز
-        const noRiceCategories = ['ملوخية', 'قرصان', 'بامية', 'مشكل', 'جريش', 'مقبلات', 'سلطة', 'أم علي', 'حلا النجم', 'كنافة'];
+        // قائمة الأصناف التي لا تحتاج لاختيار رز (أضفنا سادة وشواية)
+        const noRiceCategories = ['ملوخية', 'قرصان', 'بامية', 'مشكل', 'جريش', 'مقبلات', 'سلطة', 'أم علي', 'حلا النجم', 'كنافة', 'سادة', 'شواية'];
         
         // التحقق إذا كان الصنف يحتاج رز
         const needsRice = !noRiceCategories.some(cat => name.includes(cat));
@@ -407,10 +451,30 @@
             currentItem = { name, price };
             document.getElementById('riceModal').style.display = 'block';
         } else {
-            // إضافة مباشرة للأصناف التي لا تحتاج رز
+            // إضافة مباشرة للأصناف التي لا تحتاج رز (مثل الربع شواية السادة)
             processAdding(name, price);
         }
     }
+
+    // --- جديد: وظائف الدجاج السادة حسب الطلب ---
+    function openChickenModal(sizeName, price) {
+        currentChickenItem = { sizeName, price };
+        document.getElementById('chickenTypeModal').style.display = 'block';
+    }
+
+    function confirmChickenType(type) {
+        if (currentChickenItem) {
+            let finalName = `${currentChickenItem.sizeName} (${type})`;
+            processAdding(finalName, currentChickenItem.price);
+            closeChickenModal();
+        }
+    }
+
+    function closeChickenModal() {
+        document.getElementById('chickenTypeModal').style.display = 'none';
+        currentChickenItem = null;
+    }
+    // ---------------------------------------
 
     // وظيفة اختيار نوع الرز من المودال
     function confirmRice(riceType) {
@@ -523,6 +587,7 @@
     
 </body>
 </html>
+
 
 
 
