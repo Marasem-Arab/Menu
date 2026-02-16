@@ -652,8 +652,7 @@
         }
 
         // --- تجهيز نص الأصناف للإيميل (سطر جديد \n يضمن الترتيب الرأسي) ---
-        let orderDetailsText = cart.map((item, index) => `• ${item.name} [العدد: ${item.qty}]`).join("\n");
-
+        let orderDetailsText = cart.map((item, index) => `• ${item.name} [العدد: ${item.qty}]`).join("<br>");
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
             
@@ -685,6 +684,7 @@
 </script>
 </body>
 </html>
+
 
 
 
