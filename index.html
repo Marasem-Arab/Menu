@@ -643,6 +643,7 @@ if (addressDesc.trim() === "") {
     addressDesc = "لم يتم إدخال وصف";
 }
         
+        
         let orderNote = prompt("ملاحظات إضافية؟") || "لا يوجد";
 
         const btn = document.getElementById('send-btn');
@@ -659,8 +660,8 @@ if (addressDesc.trim() === "") {
             } catch (err) { alert("سيتم الإرسال بدون GPS"); }
         }
         // --- تجهيز نص الأصناف للإيميل (سطر جديد \n يضمن الترتيب الرأسي) ---
-        let plainTextForExcel = cart.map(item => `• ${item.name} × ${item.qty}`).join("\n");
-   
+// تأكد أن الاسم هنا هو orderDetailsText
+let orderDetailsText = cart.map(item => `• ${item.name} × ${item.qty}`).join("\n");   
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
             
@@ -692,6 +693,7 @@ if (addressDesc.trim() === "") {
 </script>
 </body>
 </html>
+
 
 
 
