@@ -83,7 +83,7 @@
             <h1 class="text-3xl font-bold leading-tight">مطعم مراسيم العرب</h1>
             <p class="text-sm opacity-95">أصالة المذاق في البدائع</p>
             <div class="inline-block bg-white/20 text-[10px] px-2 py-0.5 rounded-full mt-1">
-                📍 6الدفع عند الاستلام
+                📍 الدفع عند الاستلام
             </div>
         </div>
     </header>
@@ -662,7 +662,8 @@ if (addressDesc.trim() === "") {
         // --- تجهيز نص الأصناف للإيميل (سطر جديد \n يضمن الترتيب الرأسي) ---
         // تأكد أن الاسم هنا هو orderDetailsText
 
-let orderDetailsText = cart.map(item => `• ${item.name} × ${item.qty}`).join("\n");      
+// التعديل الذي سيعيد المربعات لكل صنف كما في الصورة القديمة
+let orderDetailsText = cart.map(item => `${item.name} × ${item.qty}`).join("\n\n");
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
             
@@ -694,6 +695,7 @@ let orderDetailsText = cart.map(item => `• ${item.name} × ${item.qty}`).join(
 </script>
 </body>
 </html>
+
 
 
 
