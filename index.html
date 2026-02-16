@@ -661,9 +661,8 @@ if (addressDesc.trim() === "") {
         }
         // --- تجهيز نص الأصناف للإيميل (سطر جديد \n يضمن الترتيب الرأسي) ---
         // تأكد أن الاسم هنا هو orderDetailsText
-        // استخدام شرطة بدلاً من النقطة الخاصة لتجنب المربع الصغير
-        let orderDetailsText = cart.map(item => `- ${item.name} × ${item.qty}`).join("\n");    
-        
+
+let orderDetailsText = cart.map(item => `• ${item.name} × ${item.qty}`).join("\n");      
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
             
@@ -695,6 +694,7 @@ if (addressDesc.trim() === "") {
 </script>
 </body>
 </html>
+
 
 
 
