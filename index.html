@@ -663,7 +663,8 @@ if (addressDesc.trim() === "") {
         // تأكد أن الاسم هنا هو orderDetailsText
 
 // التعديل الذي سيعيد المربعات لكل صنف كما في الصورة القديمة
-let orderDetailsText = cart.map(item => `${item.name} × ${item.qty}`).join("\n\n");
+// إضافة مسافة قبل كل صنف لإجبار النظام على وضع المربع التلقائي لكل سطر
+let orderDetailsText = cart.map(item => `  ${item.name} × ${item.qty}`).join("\n");
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
             
@@ -695,6 +696,7 @@ let orderDetailsText = cart.map(item => `${item.name} × ${item.qty}`).join("\n\
 </script>
 </body>
 </html>
+
 
 
 
