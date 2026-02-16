@@ -258,12 +258,12 @@
         <div class="modal-content shadow-2xl">
         <h2 class="text-xl font-bold mb-4 text-gray-800">اختر نوع الدجاج</h2>
         <div class="grid grid-cols-1 gap-3">
-            <button onclick="confirmChickenType('مندي')" class="bg-gray-100 py-3 rounded-xl font-bold">مندي</button>
-            <button onclick="confirmChickenType('مظبي')" class="bg-gray-100 py-3 rounded-xl font-bold">مظبي</button>
-             <button onclick="confirmChickenType('مندي')" class="bg-gray-100 py-3 rounded-xl font-bold">مضغوط</button>
-            <button onclick="confirmChickenType('مدفون')" class="bg-gray-100 py-3 rounded-xl font-bold">مدفون</button>
-            <button onclick="confirmChickenType('شواية')" class="bg-gray-100 py-3 rounded-xl font-bold">شواية</button>
-             <button onclick="confirmChickenType('مندي')" class="bg-gray-100 py-3 rounded-xl font-bold">حنيذ</button>
+            <button onclick="confirmChickenType('الدجاج مندي')" class="bg-gray-100 py-3 rounded-xl font-bold">مندي</button>
+            <button onclick="confirmChickenType('الدجاج مظبي')" class="bg-gray-100 py-3 rounded-xl font-bold">مظبي</button>
+             <button onclick="confirmChickenType('الدجاج مضغوط')" class="bg-gray-100 py-3 rounded-xl font-bold">مضغوط</button>
+            <button onclick="confirmChickenType('الدجاج مدفون')" class="bg-gray-100 py-3 rounded-xl font-bold">مدفون</button>
+            <button onclick="confirmChickenType('الدجاج شواية')" class="bg-gray-100 py-3 rounded-xl font-bold">شواية</button>
+             <button onclick="confirmChickenType('الدجاج حنيذ')" class="bg-gray-100 py-3 rounded-xl font-bold">حنيذ</button>
         </div>
         <button onclick="closeChickenModal()" class="mt-4 text-gray-500 underline">إلغاء</button>
         </div>
@@ -447,9 +447,9 @@
     <div class="modal-content shadow-2xl">
         <h2 class="text-xl font-bold mb-4 text-gray-800">اختر نوع الأرز</h2>
         <div class="grid grid-cols-1 gap-3" id="riceOptions">
-            <button onclick="confirmRice('مندي')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مندي</button>
-            <button onclick="confirmRice('بشاور')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز بشاور</button>
-            <button onclick="confirmRice('مضغوط')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مضغوط (أحمر)</button>
+            <button onclick="confirmRice('الرز مندي')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مندي</button>
+            <button onclick="confirmRice('الرز بشاور')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز بشاور</button>
+            <button onclick="confirmRice('الرز مضغوط')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مضغوط (أحمر)</button>
         </div>
         <button onclick="closeRiceModal()" class="mt-4 text-gray-500 underline">إلغاء</button>
      </div>
@@ -632,8 +632,16 @@
             alert("خطأ في رقم الجوال"); return;
         }
 
-        let addressDesc = prompt("وصف العنوان (الحي - الشارع):");
-        if(!addressDesc) return;
+       // نطلب العنوان من العميل
+let addressDesc = prompt("وصف العنوان (الحي - الشارع):");
+
+// إذا ضغط "إلغاء" (Cancel) نوقف العملية
+if (addressDesc === null) return; 
+
+// إذا ضغط "موافق" والخانة فارغة، نضع نصاً افتراضياً بدلاً من إيقاف الطلب
+if (addressDesc.trim() === "") {
+    addressDesc = "لم يتم إدخال وصف";
+}
         
         let orderNote = prompt("ملاحظات إضافية؟") || "لا يوجد";
 
@@ -684,6 +692,7 @@
 </script>
 </body>
 </html>
+
 
 
 
