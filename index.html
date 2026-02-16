@@ -83,7 +83,7 @@
             <h1 class="text-3xl font-bold leading-tight">مطعم مراسيم العرب</h1>
             <p class="text-sm opacity-95">أصالة المذاق في البدائع</p>
             <div class="inline-block bg-white/20 text-[10px] px-2 py-0.5 rounded-full mt-1">
-                📍 الدفع عند الاستلام
+                📍 5الدفع عند الاستلام
             </div>
         </div>
     </header>
@@ -671,16 +671,19 @@ let orderDetailsText = cart.map(item => `  ${item.name} × ${item.qty}`).join("\
             await fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: JSON.stringify({
-                    "الاسم": customerName,
-                    "الجوال": customerPhone,
-                    "الوصف": addressDesc,
-                    "الطلب": orderDetailsText, // سيظهر الآن فوق بعضه بشكل مرتب
-                    "المجموع": total + " ريال",
-                    "الموقع": googleMapsLink,
-                    "الملاحظات": orderNote
-                })
+               // استبدل جزء الـ body في الـ fetch بهذا التنسيق حصراً
+body: JSON.stringify({
+    "الاسم": customerName,
+    "الجوال": customerPhone,
+    "الوصف": addressDesc,
+    "الملاحظة": orderNote,
+    "الطلب": cart.map(item => `${item.name} × ${item.qty}`).join("\n"),
+    "المجموع": total + " ريال",
+    "الموقع": googleMapsLink,
+    "تفاصيل_الطلب": cart.map(item => ({ name: item.name, count: item.qty })) // هذا السطر هو الذي سيفعل المربعات لكل صنف
+})
             });
+            
 
             // إظهار رسالة النجاح في الموقع
             document.getElementById('modalMsg').innerText = "تم استلام طلبك يا " + customerName;
@@ -696,6 +699,7 @@ let orderDetailsText = cart.map(item => `  ${item.name} × ${item.qty}`).join("\
 </script>
 </body>
 </html>
+
 
 
 
