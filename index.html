@@ -659,10 +659,8 @@ if (addressDesc.trim() === "") {
             } catch (err) { alert("سيتم الإرسال بدون GPS"); }
         }
         // --- تجهيز نص الأصناف للإيميل (سطر جديد \n يضمن الترتيب الرأسي) ---
-        // التعديل هنا: استبدال [العدد:1] بـ × 1 وتلوين الرقم بالبرتقالي
-let orderDetailsText = cart.map((item, index) => 
-    `• ${item.name} <span style="color: #D35400; font-weight: bold;">× ${item.qty}</span>`
-).join("<br>");
+        let plainTextForExcel = cart.map(item => `• ${item.name} × ${item.qty}`).join("\n");
+   
         try {
             const scriptURL = "https://script.google.com/macros/s/AKfycbxTvyMfQTbR7hVTVyzxMePgnTLaXJG4yTcIZiEirAFSfOjv3F_Ry5qGQkMks0q-ty0/exec";
             
@@ -694,6 +692,7 @@ let orderDetailsText = cart.map((item, index) =>
 </script>
 </body>
 </html>
+
 
 
 
