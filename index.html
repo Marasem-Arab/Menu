@@ -83,7 +83,7 @@
             <h1 class="text-3xl font-bold leading-tight">مطعم مراسيم العرب</h1>
             <p class="text-sm opacity-95">أصالة المذاق في البدائع</p>
             <div class="inline-block bg-white/20 text-[10px] px-2 py-0.5 rounded-full mt-1">
-                📍 5الدفع عند الاستلام
+                📍 الدفع عند الاستلام
             </div>
         </div>
     </header>
@@ -168,7 +168,6 @@
                     <img src="صور/مضغوط.png" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
                     <div class="flex flex-col">
                     <h3 class="font-bold">دجاج مضغوط</h3>
-                    <p class="text-orange-600 text-[10px] leading-tight mt-1">يمكنك اختيار نوع الأرز بعد الإضافة</p>
                 </div></div>
                 <div class="flex gap-1">
                     <button onclick="addToCart('حبة دجاج مضغوط', 42)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>42ر.س</span></button>
@@ -199,24 +198,12 @@
                     <button onclick="addToCart('نص دجاج مظبي', 21)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>21ر.س</span></button>
                 </div>
             </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <img src="صور/حنيذ.png" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
-                    <div class="flex flex-col">
-                    <h3 class="font-bold">دجاج حنيذ</h3>
-                    <p class="text-orange-600 text-[10px] leading-tight mt-1">يمكنك اختيار نوع الأرز بعد الإضافة</p>
-                </div></div>
-                <div class="flex gap-1">
-                    <button onclick="addToCart('حبة دجاج حنيذ', 42)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>42ر.س</span></button>
-                    <button onclick="addToCart('نص دجاج حنيذ', 21)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نص <span>21ر.س</span></button>
-                </div>
-            </div>
+            
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <img src="صور/مقلوبة.png" onerror="this.src='https://via.placeholder.com/100?text=دجاج'" class="food-img">
                     <div class="flex flex-col">
                     <h3 class="font-bold">دجاج مقلوبة</h3>
-                    <p class="text-orange-600 text-[10px] leading-tight mt-1">يمكنك اختيار نوع الأرز بعد الإضافة</p>
                 </div></div>
                 <div class="flex gap-1">
                     <button onclick="addToCart('حبة دجاج مقلوبة', 45)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كاملة <span>45ر.س</span></button>
@@ -260,10 +247,8 @@
         <div class="grid grid-cols-1 gap-3">
             <button onclick="confirmChickenType('الدجاج مندي')" class="bg-gray-100 py-3 rounded-xl font-bold">مندي</button>
             <button onclick="confirmChickenType('الدجاج مظبي')" class="bg-gray-100 py-3 rounded-xl font-bold">مظبي</button>
-             <button onclick="confirmChickenType('الدجاج مضغوط')" class="bg-gray-100 py-3 rounded-xl font-bold">مضغوط</button>
             <button onclick="confirmChickenType('الدجاج مدفون')" class="bg-gray-100 py-3 rounded-xl font-bold">مدفون</button>
             <button onclick="confirmChickenType('الدجاج شواية')" class="bg-gray-100 py-3 rounded-xl font-bold">شواية</button>
-             <button onclick="confirmChickenType('الدجاج حنيذ')" class="bg-gray-100 py-3 rounded-xl font-bold">حنيذ</button>
         </div>
         <button onclick="closeChickenModal()" class="mt-4 text-gray-500 underline">إلغاء</button>
         </div>
@@ -287,7 +272,7 @@
                     <h3 class="font-bold text-sm">قرصان</h3>
                 </div>
                 <div class="flex gap-1">
-                    <button onclick="addToCart('قرصان كبير', 10)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كبير <span>10ر.س</span></button>
+                    <button onclick="addToCart('قرصان كبير', 9)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كبير <span>9ر.س</span></button>
                     <button onclick="addToCart('قرصان صغير', 5)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">صغير <span>5ر.س</span></button>
                 </div>
             </div>
@@ -356,46 +341,36 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <img src="صور/تبولة.png" onerror="this.src='https://via.placeholder.com/100?text=سلطة'" class="food-img">
-                    <div><h3 class="font-bold">سلطة تبولة</h3><p class="text-orange-600 text-sm">6 ريال</p></div>
+                    <div><h3 class="font-bold">سلطة تبولة</h3><p class="text-orange-600 text-sm">5 ريال</p></div>
                 </div>
-                <button onclick="addToCart('سلطة تبولة', 6)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+                <button onclick="addToCart('سلطة تبولة', 5)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <img src="صور/سلطة زيتون.png" onerror="this.src='https://via.placeholder.com/100?text=سلطة'" class="food-img">
-                    <div><h3 class="font-bold">سلطة زيتزن</h3><p class="text-orange-600 text-sm">8 ريال</p></div>
+                    <div><h3 class="font-bold">سلطة زيتزن</h3><p class="text-orange-600 text-sm">5 ريال</p></div>
                 </div>
-                <button onclick="addToCart('سلطة زيتزن', 8)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+                <button onclick="addToCart('سلطة زيتزن', 5)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                    <img src="صور/فتوش.png" onerror="this.src='https://via.placeholder.com/100?text=سلطة'" class="food-img">
-                    <div><h3 class="font-bold">سلطة فتوش</h3><p class="text-orange-600 text-sm">7 ريال</p></div>
+                    <div><h3 class="font-bold">سلطة فتوش</h3><p class="text-orange-600 text-sm">5 ريال</p></div>
                 </div>
-                <button onclick="addToCart('سلطة فتوش', 7)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+                <button onclick="addToCart('سلطة فتوش', 5)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                    <img src="صور/زبادي و خيار.png" onerror="this.src='https://via.placeholder.com/100?text=سلطة'" class="food-img">
-                    <div><h3 class="font-bold">سلطة زبادي و خيار</h3><p class="text-orange-600 text-sm">6 ريال</p></div>
+                    <div><h3 class="font-bold">سلطة زبادي و خيار</h3><p class="text-orange-600 text-sm">5 ريال</p></div>
                 </div>
-                <button onclick="addToCart('سلطة زبادي و خيار', 6)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+                <button onclick="addToCart('سلطة زبادي و خيار', 5)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
         </div>
 
         <h2 class="category-title">المقبلات</h2>
          <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <img src="صور/مقبلات.png" onerror="this.src='https://via.placeholder.com/100?text=مقبلات'" class="food-img">
-                    <h3 class="font-bold text-sm">مقبلات مشكلة</h3>
-                </div>
-                <div class="flex gap-1">
-                    <button onclick="addToCart('مقبلات كبير', 15)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">كبير <span>15ر.س</span></button>
-                    <button onclick="addToCart('مقبلات وسط', 12)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">وسط <span>12ر.س</span></button>
-                    <button onclick="addToCart('مقبلات صغير', 8)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">صغير <span>8ر.س</span></button>
-                </div>
-            </div> 
+  
              <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <img src="صور/بابا غنوج.png" onerror="this.src='https://via.placeholder.com/100?text=سلطة'" class="food-img">
@@ -418,9 +393,9 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <img src="صور/ام علي.png" onerror="this.src='https://via.placeholder.com/100?text=حلا'" class="food-img">
-                    <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600 text-sm">10 ريال</p></div>
+                    <div><h3 class="font-bold">أم علي</h3><p class="text-orange-600 text-sm">8 ريال</p></div>
                 </div>
-                <button onclick="addToCart('أم علي', 10)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
+                <button onclick="addToCart('أم علي', 8)" class="btn-fixed bg-orange-600 text-white font-bold">إضافة +</button>
             </div>
              <div class="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
                 <div class="flex items-center gap-3">
@@ -434,9 +409,10 @@
                     <img src="صور/كنافة.png" onerror="this.src='https://via.placeholder.com/100?text=حلا'" class="food-img">
                     <h3 class="font-bold">كنافة</h3>
                 </div>
+                
                <div class="flex gap-1">
-                    <button onclick="addToCart('كنافة بستاشيو', 15)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">بستاشيو<span>15ر.س</span></button>
-                    <button onclick="addToCart('كنافة نوتلا', 12)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نوتلا<span>12ر.س</span></button>
+                    <button onclick="addToCart('كنافة بستاشيو', 8)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">بستاشيو<span>8ر.س</span></button>
+                    <button onclick="addToCart('كنافة نوتلا', 8)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">نوتلا<span>8ر.س</span></button>
                     <button onclick="addToCart('كنافة بالقشطة', 8)" class="btn-fixed bg-orange-600 text-white font-bold text-xs">القشطة<span>8ر.س</span></button>
                 </div>
             </div>
@@ -448,8 +424,10 @@
         <h2 class="text-xl font-bold mb-4 text-gray-800">اختر نوع الأرز</h2>
         <div class="grid grid-cols-1 gap-3" id="riceOptions">
             <button onclick="confirmRice('الرز مندي')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مندي</button>
+            <button onclick="confirmRice('الرز الشعبي')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مضغوط (أحمر)</button>
             <button onclick="confirmRice('الرز بشاور')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز بشاور</button>
-            <button onclick="confirmRice('الرز مضغوط')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مضغوط (أحمر)</button>
+            <button onclick="confirmRice('الرز مراسيم')" class="bg-gray-100 hover:bg-orange-100 py-3 rounded-xl font-bold border border-gray-200">رز مضغوط (أحمر)</button>
+
         </div>
         <button onclick="closeRiceModal()" class="mt-4 text-gray-500 underline">إلغاء</button>
      </div>
@@ -557,7 +535,7 @@
     }
 
     function addToCart(name, price) {
-        const noRiceCategories = ['ملوخية', 'مصقع','بابا غونج', 'قرصان', 'بامية', 'حمص','مشكل', 'جريش', 'مقبلات', 'سلطة', 'أم علي', 'حلا النجم', 'كنافة'];
+        const noRiceCategories = ['ملوخية', 'دجاج مضغوط','دجاج مقلوبة', 'مصقع','بابا غونج', 'قرصان', 'بامية', 'حمص','مشكل', 'جريش', 'مقبلات', 'سلطة', 'أم علي', 'حلا النجم', 'كنافة'];
         const isSideDish = noRiceCategories.some(cat => name.includes(cat));
         const isPlainQuarter = (name === 'ربع شواية سادة');
         if (isSideDish || isPlainQuarter) {
@@ -699,6 +677,7 @@ body: JSON.stringify({
 </script>
 </body>
 </html>
+
 
 
 
